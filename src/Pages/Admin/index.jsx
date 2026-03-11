@@ -266,6 +266,7 @@ function Admin() {
                               <label>Mesure</label>
                               <select name="mesure" value={editForm.mesure} onChange={handleEditChange}>
                                 <option value="">—</option>
+                                 <option value="unité">unité</option>
                                 <option value="g">g</option>
                                 <option value="kg">kg</option>
                                 <option value="ml">ml</option>
@@ -340,6 +341,7 @@ function Admin() {
                 <label>Mesure</label>
                 <select name="mesure" value={form.mesure} onChange={handleChange}>
                   <option value="">—</option>
+                  <option value="unité">unité</option>
                   <option value="g">g</option>
                   <option value="kg">kg</option>
                   <option value="ml">ml</option>

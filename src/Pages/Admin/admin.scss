@@ -166,9 +166,9 @@
 
   &__row-3 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.6rem;
-    margin-bottom: 0.25rem;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   &__submit {
@@ -562,9 +562,9 @@
   // ── Row-3 ─────────────────────────────────────────────────────────────────
   &__row-3 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.6rem;
-    margin-bottom: 0.25rem;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
   }
 
 }
