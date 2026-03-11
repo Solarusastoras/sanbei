@@ -1,0 +1,109 @@
+@import '../../Utils/SASS/variables.scss';
+
+.card {
+  background: $warm-white;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  transition: transform $transition, box-shadow $transition;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba($sand, 0.25);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
+
+    .card__img img {
+      transform: scale(1.04);
+    }
+  }
+
+  // ── Image ────────────────────────────────────────────────────────────────
+  &__img {
+    overflow: hidden;
+    height: 200px;
+    position: relative;
+    background: $cream;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      height: 100%;
+      background: linear-gradient(135deg, $cream 0%, darken($cream, 6%) 100%);
+    }
+  }
+
+  // ── Tag badge ────────────────────────────────────────────────────────────
+  &__tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: $terracotta;
+    color: white;
+    font-family: $font-body;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 50px;
+  }
+
+  // ── Body ─────────────────────────────────────────────────────────────────
+  &__body {
+    padding: 1.25rem 1.4rem 1.4rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $ink;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  &__description {
+    font-size: 0.85rem;
+    color: $stone;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  // ── Footer ───────────────────────────────────────────────────────────────
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba($sand, 0.3);
+  }
+
+  &__price {
+    font-family: $font-display;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $terracotta;
+  }
+
+  &__info {
+    font-size: 0.75rem;
+    color: $sand;
+    letter-spacing: 0.03em;
+  }
+}

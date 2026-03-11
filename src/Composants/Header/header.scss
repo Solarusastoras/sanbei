@@ -1,0 +1,134 @@
+@import '../../Utils/SASS/variables.scss';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba($warm-white, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba($sand, 0.25);
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  // ── Logo ──────────────────────────────────────────────────────────────────
+  &__logo {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $ink;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    span { color: $terracotta; }
+  }
+
+  // ── Nav links ─────────────────────────────────────────────────────────────
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: $stone;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    transition: color $transition;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: $terracotta;
+      transition: width $transition;
+    }
+
+    &:hover,
+    &--active {
+      color: $ink;
+
+      &::after { width: 100%; }
+    }
+  }
+
+  // ── Right slot (admin link) ───────────────────────────────────────────────
+  &__admin {
+    font-size: 0.75rem;
+    color: rgba($stone, 0.5);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color $transition;
+    flex-shrink: 0;
+
+    &:hover { color: $terracotta; }
+  }
+
+  // ── Mobile burger ─────────────────────────────────────────────────────────
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: $ink;
+      border-radius: 2px;
+      transition: all $transition;
+    }
+
+    &--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    &--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    &--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  }
+
+  // ── Mobile menu ───────────────────────────────────────────────────────────
+  &__mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: $warm-white;
+    border-top: 1px solid rgba($sand, 0.2);
+    padding: 1rem 2rem 1.5rem;
+    gap: 1rem;
+
+    &--open { display: flex; }
+
+    .header__link {
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+  }
+
+  @media (max-width: 640px) {
+    &__nav   { display: none; }
+    &__admin { display: none; }
+    &__burger { display: flex; }
+  }
+}

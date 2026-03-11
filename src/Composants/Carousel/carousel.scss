@@ -1,0 +1,217 @@
+@import '../../Utils/SASS/variables.scss';
+
+.carousel {
+  padding: 0 0 3rem;
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  &__header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 1.25rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $ink;
+    letter-spacing: -0.02em;
+
+    em {
+      font-style: italic;
+      color: $terracotta;
+    }
+  }
+
+  &__see-all {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $stone;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $transition;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &::after {
+      content: '→';
+      transition: transform $transition;
+    }
+
+    &:hover {
+      color: $terracotta;
+      &::after { transform: translateX(3px); }
+    }
+  }
+
+  // ── Track wrapper ─────────────────────────────────────────────────────────
+  &__outer {
+    position: relative;
+  }
+
+  &__track-wrap {
+    overflow: hidden;
+    padding: 0.5rem 2rem 1rem;
+    // fade edges
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 3%,
+      black 97%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 3%,
+      black 97%,
+      transparent 100%
+    );
+  }
+
+  &__track {
+    display: flex;
+    gap: 1.25rem;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  // ── Each slide ────────────────────────────────────────────────────────────
+  &__slide {
+    flex: 0 0 calc((100% - 3 * 1.25rem) / 3.4);
+    min-width: 220px;
+
+    @media (max-width: 900px) {
+      flex: 0 0 calc((100% - 1.25rem) / 2.1);
+    }
+
+    @media (max-width: 560px) {
+      flex: 0 0 78vw;
+    }
+  }
+
+  // ── Arrow buttons ─────────────────────────────────────────────────────────
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba($sand, 0.4);
+    background: rgba($warm-white, 0.95);
+    backdrop-filter: blur(8px);
+    color: $ink;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition;
+    box-shadow: 0 2px 8px rgba($ink, 0.08);
+
+    &:hover:not(:disabled) {
+      background: $terracotta;
+      border-color: $terracotta;
+      color: white;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &--prev { left: 0.25rem; }
+    &--next { right: 0.25rem; }
+  }
+
+  // ── Dots ──────────────────────────────────────────────────────────────────
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 0.5rem;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: rgba($sand, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: all $transition;
+
+    &--active {
+      background: $terracotta;
+      width: 18px;
+      border-radius: 3px;
+    }
+  }
+
+  // ── Skeleton loading ──────────────────────────────────────────────────────
+  &__skeleton {
+    height: 280px;
+    border-radius: $radius-lg;
+    background: linear-gradient(
+      90deg,
+      rgba($sand, 0.15) 25%,
+      rgba($sand, 0.28) 50%,
+      rgba($sand, 0.15) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  // ── Empty state ───────────────────────────────────────────────────────────
+  &__empty {
+    text-align: center;
+    padding: 2.5rem;
+    color: $stone;
+    font-size: 0.85rem;
+
+    span { display: block; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  }
+
+  // ── Badge "Nouveau" ───────────────────────────────────────────────────────
+  &__new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: $terracotta;
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 50px;
+    z-index: 2;
+  }
+}

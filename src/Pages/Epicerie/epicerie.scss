@@ -1,0 +1,100 @@
+@import '../../Utils/SASS/variables.scss';
+
+.epicerie {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+
+  // ── Header ───────────────────────────────────────────────────────────────
+  &__header {
+    margin-bottom: 2.5rem;
+  }
+
+  &__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $saffron;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $ink;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+
+    span {
+      font-style: italic;
+      color: $saffron;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: $stone;
+  }
+
+  // ── Search ───────────────────────────────────────────────────────────────
+  &__search-wrap {
+    position: relative;
+    max-width: 360px;
+    margin-bottom: 1.5rem;
+  }
+
+  &__search {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid rgba($sand, 0.5);
+    border-radius: 50px;
+    background: $warm-white;
+    font-family: $font-body;
+    font-size: 0.875rem;
+    color: $ink;
+    outline: none;
+    transition: border-color $transition;
+
+    &::placeholder { color: $sand; }
+    &:focus { border-color: $saffron; }
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $sand;
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+
+  // ── Sections ─────────────────────────────────────────────────────────────
+  &__section {
+    margin-bottom: 3rem;
+  }
+
+  &__section-title {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $charcoal;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba($sand, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // ── Grid ─────────────────────────────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+}

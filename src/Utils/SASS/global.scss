@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import './variables';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $warm-white;
+  color: $ink;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ─── Navigation ────────────────────────────────────────────────────────────
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba($warm-white, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba($sand, 0.3);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+
+  &__brand {
+    font-family: $font-display;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $ink;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+
+    span {
+      color: $terracotta;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+
+    a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: $stone;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color $transition;
+
+      &:hover,
+      &.active {
+        color: $terracotta;
+      }
+    }
+  }
+}

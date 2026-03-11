@@ -1,0 +1,418 @@
+@import '../../Utils/SASS/variables.scss';
+
+.admin {
+  min-height: 100vh;
+  background: #f9f7f4;
+  font-family: $font-body;
+
+  // ── Top bar ────────────────────────────────────────────────────────────────
+  &__topbar {
+    background: $ink;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  &__brand {
+    font-family: $font-display;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $cream;
+    letter-spacing: -0.02em;
+
+    span { color: $terracotta; }
+
+    small {
+      font-family: $font-body;
+      font-size: 0.65rem;
+      color: $stone;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-left: 8px;
+      font-weight: 400;
+    }
+  }
+
+  &__logout {
+    background: none;
+    border: 1px solid rgba($sand, 0.25);
+    color: $stone;
+    padding: 6px 14px;
+    border-radius: $radius-sm;
+    font-family: $font-body;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+      border-color: $terracotta;
+      color: $terracotta;
+    }
+  }
+
+  // ── Layout ────────────────────────────────────────────────────────────────
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── Section title ─────────────────────────────────────────────────────────
+  &__section-title {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $ink;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba($sand, 0.3);
+  }
+
+  // ── Form card ─────────────────────────────────────────────────────────────
+  &__form-card {
+    background: white;
+    border-radius: $radius-lg;
+    padding: 1.75rem;
+    border: 1px solid rgba($sand, 0.25);
+    box-shadow: $shadow-card;
+    position: sticky;
+    top: 80px;
+    align-self: start;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    background: #f1ede6;
+    border-radius: $radius-sm;
+    padding: 3px;
+  }
+
+  &__tab {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: none;
+    font-family: $font-body;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: $stone;
+    border-radius: calc(#{$radius-sm} - 2px);
+    cursor: pointer;
+    transition: all $transition;
+
+    &--active {
+      background: white;
+      color: $ink;
+      box-shadow: 0 1px 4px rgba($ink, 0.1);
+    }
+  }
+
+  &__field {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: $stone;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid rgba($sand, 0.45);
+      border-radius: $radius-sm;
+      font-family: $font-body;
+      font-size: 0.875rem;
+      color: $ink;
+      background: #faf8f4;
+      outline: none;
+      transition: border-color $transition;
+
+      &:focus { border-color: $terracotta; }
+      &::placeholder { color: rgba($stone, 0.4); }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 72px;
+      line-height: 1.5;
+    }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 11px;
+    background: $terracotta;
+    color: white;
+    border: none;
+    border-radius: $radius-sm;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background $transition, transform $transition;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &:hover:not(:disabled) {
+      background: darken($terracotta, 8%);
+      transform: translateY(-1px);
+    }
+
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+  }
+
+  &__success {
+    font-size: 0.8rem;
+    color: $sage;
+    text-align: center;
+    margin-top: 0.75rem;
+    padding: 7px 12px;
+    background: rgba($sage, 0.08);
+    border-radius: $radius-sm;
+    border: 1px solid rgba($sage, 0.2);
+  }
+
+  &__form-error {
+    font-size: 0.8rem;
+    color: #ef4444;
+    text-align: center;
+    margin-top: 0.75rem;
+    padding: 7px 12px;
+    background: rgba(#ef4444, 0.08);
+    border-radius: $radius-sm;
+    border: 1px solid rgba(#ef4444, 0.2);
+  }
+
+  // ── Products list ─────────────────────────────────────────────────────────
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__item {
+    background: white;
+    border: 1px solid rgba($sand, 0.25);
+    border-radius: $radius-md;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: box-shadow $transition;
+
+    &:hover { box-shadow: $shadow-card; }
+  }
+
+  &__item-img {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-sm;
+    object-fit: cover;
+    background: $cream;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__item-info {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+      font-family: $font-display;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: $ink;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    p {
+      font-size: 0.75rem;
+      color: $stone;
+      margin-top: 2px;
+    }
+  }
+
+  &__item-price {
+    font-family: $font-display;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $terracotta;
+    flex-shrink: 0;
+  }
+
+  &__item-type {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 50px;
+    flex-shrink: 0;
+
+    &--plat {
+      background: rgba($sage, 0.12);
+      color: $sage;
+    }
+
+    &--epicerie {
+      background: rgba($saffron, 0.12);
+      color: darken($saffron, 15%);
+    }
+  }
+
+  &__item-delete {
+    background: none;
+    border: none;
+    color: rgba($stone, 0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color $transition;
+    flex-shrink: 0;
+
+    &:hover { color: #ef4444; }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 3rem;
+    color: $stone;
+    font-size: 0.875rem;
+
+    span { display: block; font-size: 2rem; margin-bottom: 0.75rem; }
+  }
+
+  &__filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    padding: 5px 14px;
+    border-radius: 50px;
+    border: 1px solid rgba($sand, 0.4);
+    background: transparent;
+    font-family: $font-body;
+    font-size: 0.78rem;
+    color: $stone;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover { border-color: $ink; color: $ink; }
+
+    &--active {
+      background: $ink;
+      border-color: $ink;
+      color: white;
+    }
+  }
+
+  // ── Dropzone ──────────────────────────────────────────────────────────────
+  &__dropzone {
+    border: 2px dashed rgba($sand, 0.45);
+    border-radius: $radius-md;
+    padding: 1.75rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color $transition, background $transition;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    background: #faf8f4;
+
+    &:hover {
+      border-color: $terracotta;
+      background: rgba($terracotta, 0.03);
+    }
+
+    &-icon { font-size: 1.8rem; }
+
+    &-text {
+      font-size: 0.85rem;
+      color: $charcoal;
+      font-weight: 500;
+    }
+
+    &-hint {
+      font-size: 0.72rem;
+      color: $stone;
+    }
+  }
+
+  // ── Image preview ─────────────────────────────────────────────────────────
+  &__img-preview {
+    position: relative;
+    border-radius: $radius-md;
+    overflow: hidden;
+    border: 1px solid rgba($sand, 0.3);
+
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__img-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba($ink, 0.75);
+    color: white;
+    border: none;
+    border-radius: $radius-sm;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-family: $font-body;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background $transition;
+
+    &:hover { background: rgba(#ef4444, 0.85); }
+  }
+}

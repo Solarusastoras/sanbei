@@ -1,0 +1,170 @@
+@import '../../Utils/SASS/variables';
+
+.home {
+  // ── Hero ─────────────────────────────────────────────────────────────────
+  &__hero {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: $cream;
+
+    // Grain texture overlay
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    // Decorative circle
+    &::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($saffron, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  }
+
+  &__eyebrow {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $terracotta;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    color: $ink;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+
+    em {
+      font-style: italic;
+      color: $terracotta;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $stone;
+    max-width: 480px;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  // ── Section separator ────────────────────────────────────────────────────
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    span {
+      font-family: $font-display;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: $ink;
+      letter-spacing: -0.02em;
+    }
+
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba($sand, 0.4);
+    }
+  }
+
+  // ── Category cards ───────────────────────────────────────────────────────
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__cat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: $warm-white;
+    border: 1px solid rgba($sand, 0.3);
+    border-radius: $radius-lg;
+    text-decoration: none;
+    transition: transform $transition, box-shadow $transition, border-color $transition;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $shadow-hover;
+      border-color: rgba($terracotta, 0.3);
+    }
+
+    &-icon {
+      font-size: 2.2rem;
+      width: 56px;
+      height: 56px;
+      background: $cream;
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    &-text {
+      h3 {
+        font-family: $font-display;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $ink;
+        margin-bottom: 2px;
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: $stone;
+      }
+    }
+
+    &-arrow {
+      margin-left: auto;
+      color: $sand;
+      font-size: 1.1rem;
+      transition: transform $transition;
+    }
+
+    &:hover &-arrow {
+      transform: translateX(4px);
+      color: $terracotta;
+    }
+  }
+}
