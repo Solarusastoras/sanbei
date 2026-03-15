@@ -1,4 +1,5 @@
-@import '../../Utils/SASS/variables.scss';
+@use '../../Utils/SASS/variables.scss' as *;
+@use 'sass:color';
 
 // ── On masque header/footer sur la page login ────────────────────────────────
 // (optionnel : à activer si besoin via body class)
@@ -175,7 +176,7 @@
     transition: background $transition, transform $transition, box-shadow $transition;
 
     &:hover:not(:disabled) {
-      background: darken($terracotta, 7%);
+      background: color.adjust($terracotta, $lightness: -7%);
       transform: translateY(-1px);
       box-shadow: 0 4px 16px rgba($terracotta, 0.35);
     }

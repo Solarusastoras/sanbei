@@ -118,14 +118,16 @@ function Carousel({ type, title, icon, seeAllTo }) {
             style={{ transform: `translateX(-${offset}%)` }}>
             {items.map((item, i) => (
               <div key={item.id} className="carousel__slide">
-                {i < 3 && <span className="carousel__new-badge">Nouveau</span>}
                 <Card
+                  id={item.id}
+                  type={item.type}
                   title={item.title}
                   description={item.description}
                   price={item.price}
                   image={item.image}
                   tag={item.tag}
                   unit={item.unit}
+                  mesure={item.mesure}
                 />
               </div>
             ))}

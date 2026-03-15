@@ -5,13 +5,13 @@ import Login from '../Login';
 import './admin.scss';
 
 const CATEGORIES = {
-  plat:     ['Viande', 'Poisson', 'Végétarien', 'Soupe', 'Dessert', 'Autre'],
+  plat:     ['Poulet', 'Bœuf', 'Canard', 'Porc', 'Végétarien', 'Poisson', 'Viandes', 'Soupe', 'Dessert', 'Autre'],
   epicerie: ['Frais', 'Épicerie sèche', 'Boissons', 'Fromages', 'Autre'],
 };
 
 const EMPTY_FORM = {
   title: '', description: '', price: '',
-  category: '', tag: '', unit: '', mesure: '', type: 'plat',
+  category: [], tag: '', unit: '', mesure: '', type: 'plat',
 };
 
 async function uploadImage(file) {
@@ -85,7 +85,7 @@ function Admin() {
   async function handleSubmit(e) {
     e.preventDefault();
     setFormError(''); setSuccess('');
-    if (!form.title || !form.price || !form.category) {
+    if (!form.title || !form.price || !form.category.length) {
       setFormError('Titre, prix et catégorie sont obligatoires.'); return;
     }
     setSubmitting(true);
@@ -104,7 +104,7 @@ function Admin() {
       mesure: form.mesure || null, type: form.type,
     });
     if (error) { setFormError("Erreur lors de l'ajout : " + error.message); }
-    else { setSuccess(`✓ "${form.title}" ajouté !`); setForm({ ...EMPTY_FORM, type: form.type }); removeImage(); fetchProducts(); }
+    else { setSuccess(`✓ "${form.title}" ajouté !`); setForm({ ...EMPTY_FORM, type: form.type, category: [] }); removeImage(); fetchProducts(); }
     setSubmitting(false);
   }
 
@@ -269,9 +269,9 @@ function Admin() {
                                  <option value="unité">unité</option>
                                 <option value="g">g</option>
                                 <option value="kg">kg</option>
-                                <option value="ml">ml</option>
+                                <option value="ml">mL</option>
                                 <option value="L">L</option>
-                                <option value="cl">cl</option>
+                                <option value="cl">cL</option>
                               </select>
                             </div>
                           </div>
@@ -344,9 +344,9 @@ function Admin() {
                   <option value="unité">unité</option>
                   <option value="g">g</option>
                   <option value="kg">kg</option>
-                  <option value="ml">ml</option>
+                  <option value="ml">mL</option>
                   <option value="L">L</option>
-                  <option value="cl">cl</option>
+                  <option value="cl">cL</option>
                 </select>
               </div>
             </div>

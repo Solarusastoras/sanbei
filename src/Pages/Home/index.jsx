@@ -9,13 +9,40 @@ function Home() {
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="home__hero">
-        <p className="home__eyebrow">Bienvenue</p>
-        <h1 className="home__title">
-          La table,<br /><em>à portée de main</em>
-        </h1>
-        <p className="home__subtitle">
-          Explorez nos plats du jour et notre épicerie soigneusement sélectionnée.
-        </p>
+        <div className="home__hero-bg">
+          <div className="home__hero-grain" />
+          <div className="home__hero-blob home__hero-blob--1" />
+          <div className="home__hero-blob home__hero-blob--2" />
+        </div>
+        <div className="home__hero-content">
+          <p className="home__eyebrow">
+            <span className="home__eyebrow-dot" />
+            Épicerie fine & Restaurant · Pau
+          </p>
+          <h1 className="home__title">
+            La table,<br />
+            <em>à portée de main</em>
+          </h1>
+          <p className="home__subtitle">
+            Plats cuisinés chaque matin, produits d'exception<br />
+            triés sur le volet. Le meilleur du quartier.
+          </p>
+          <div className="home__cta-group">
+            <Link to="/plats" className="home__cta home__cta--primary">
+              🍽️ Voir tous nos plats
+            </Link>
+            <Link to="/epicerie" className="home__cta home__cta--secondary">
+              🧺 Voir toutes nos produits
+            </Link>
+          </div>
+          <div className="home__hero-badges">
+            <span>🕘 Lun–Sam · 9h30–19h30</span>
+            <span>📍 6 rue Cordeliers, Pau</span>
+          </div>
+        </div>
+        <div className="home__hero-scroll">
+          <span>↓</span>
+        </div>
       </section>
 
       {/* ── Divider ───────────────────────────────────────────────────── */}

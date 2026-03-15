@@ -1,4 +1,5 @@
-@import '../../Utils/SASS/variables.scss';
+@use '../../Utils/SASS/variables.scss' as *;
+@use 'sass:color';
 
 .admin {
   min-height: 100vh;
@@ -190,7 +191,7 @@
     gap: 0.5rem;
 
     &:hover:not(:disabled) {
-      background: darken($terracotta, 8%);
+      background: color.adjust($terracotta, $lightness: -8%);
       transform: translateY(-1px);
     }
 
@@ -304,7 +305,7 @@
 
     &--epicerie {
       background: rgba($saffron, 0.12);
-      color: darken($saffron, 15%);
+      color: color.adjust($saffron, $lightness: -15%);
     }
   }
 
@@ -555,7 +556,7 @@
     cursor: pointer;
     transition: background $transition;
 
-    &:hover:not(:disabled) { background: darken($sage, 8%); }
+    &:hover:not(:disabled) { background: color.adjust($sage, $lightness: -8%); }
     &:disabled { opacity: 0.6; cursor: not-allowed; }
   }
 
@@ -565,6 +566,45 @@
     grid-template-columns: 0.5fr 0.5fr 0.5fr;
     gap: 1rem;
     margin-bottom: 0.5rem;
+  }
+
+  // ── Multi catégorie checkboxes ────────────────────────────────────────────
+  &__cat-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  &__cat-check {
+    padding: 5px 12px;
+    border-radius: 50px;
+    border: 1.5px solid rgba($sand, 0.45);
+    background: transparent;
+    font-family: $font-body;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $stone;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+      border-color: $terracotta;
+      color: $terracotta;
+    }
+
+    &--active {
+      background: $terracotta;
+      border-color: $terracotta;
+      color: white;
+    }
+  }
+
+  &__cat-hint {
+    font-size: 0.72rem;
+    color: rgba($stone, 0.6);
+    margin-top: 0.3rem;
+    display: block;
   }
 
 }

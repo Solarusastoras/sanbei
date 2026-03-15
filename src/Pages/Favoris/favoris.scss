@@ -1,0 +1,287 @@
+@use '../../Utils/SASS/variables.scss' as *;
+@use 'sass:color';
+
+.favoris-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($ink, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media (max-width: 600px) {
+    align-items: flex-end;
+    justify-content: stretch;
+  }
+}
+
+.favoris {
+  background: white;
+  width: 460px;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 40px rgba($ink, 0.15);
+  animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 90vh;
+    border-radius: 20px 20px 0 0;
+    animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slide-in {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid rgba($sand, 0.25);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $ink;
+  }
+
+  &__count {
+    font-size: 0.78rem;
+    color: $stone;
+    margin-top: 2px;
+  }
+
+  &__close {
+    background: none;
+    border: 1px solid rgba($sand, 0.3);
+    color: $stone;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition;
+
+    &:hover { background: rgba($terracotta, 0.08); color: $terracotta; border-color: $terracotta; }
+  }
+
+  &__empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: $stone;
+    text-align: center;
+    padding: 2rem;
+
+    span { font-size: 3rem; }
+    p { font-size: 0.88rem; line-height: 1.6; }
+  }
+
+  &__list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.75rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba($sand, 0.2);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__item-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: $cream;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    border: 1px solid rgba($sand, 0.3);
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  &__item-info {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+      font-family: $font-display;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $ink;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    p { font-size: 0.75rem; color: $stone; margin-top: 2px; }
+  }
+
+  &__item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+
+    button {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid rgba($sand, 0.5);
+      background: none;
+      font-size: 1rem;
+      color: $ink;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all $transition;
+      line-height: 1;
+
+      &:hover { border-color: $terracotta; color: $terracotta; }
+    }
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $ink;
+      min-width: 20px;
+      text-align: center;
+    }
+  }
+
+  &__item-total {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $terracotta;
+    flex-shrink: 0;
+    min-width: 60px;
+    text-align: right;
+  }
+
+  &__item-remove {
+    background: none;
+    border: none;
+    color: rgba($stone, 0.4);
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 4px;
+    transition: color $transition;
+    flex-shrink: 0;
+
+    &:hover { color: #ef4444; }
+  }
+
+  &__footer {
+    padding: 1.25rem 1.75rem;
+    border-top: 1px solid rgba($sand, 0.25);
+    flex-shrink: 0;
+    background: #faf8f4;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span { font-size: 0.9rem; color: $stone; font-weight: 500; }
+    strong { font-family: $font-display; font-size: 1.4rem; color: $terracotta; }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__btn-clear {
+    flex: 1;
+    padding: 10px;
+    border: 1.5px solid rgba($sand, 0.4);
+    background: none;
+    border-radius: $radius-sm;
+    font-family: $font-body;
+    font-size: 0.85rem;
+    color: $stone;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover { border-color: #ef4444; color: #ef4444; }
+  }
+
+  &__btn-print {
+    flex: 2;
+    padding: 10px;
+    background: $terracotta;
+    border: none;
+    border-radius: $radius-sm;
+    font-family: $font-body;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background $transition;
+
+    &:hover { background: color.adjust($terracotta, $lightness: -8%); }
+  }
+}
+
+// ── Print ─────────────────────────────────────────────────────────────────
+@media print {
+  // Cache tout sauf la modale favoris
+  body > * { display: none !important; }
+  .favoris-overlay { display: block !important; position: static !important; background: none !important; }
+  .favoris {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  .favoris__close,
+  .favoris__actions,
+  .favoris__item-remove,
+  .favoris__item-qty { display: none !important; }
+  .favoris__list { overflow: visible !important; }
+
+  // Entête impression
+  .favoris__header::before {
+    content: 'San-Beï · Ma liste de favoris';
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #C1624A;
+    margin-bottom: 0.25rem;
+  }
+}

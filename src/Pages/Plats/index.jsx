@@ -21,7 +21,7 @@ function Plats() {
     fetchPlats();
   }, []);
 
-  const activeFilters = ['Tous', ...new Set(products.map(p => p.category))];
+  const activeFilters = ['Tous', ...new Set(products.map(p => p.category).filter(Boolean))];
   const filtered = active === 'Tous' ? products : products.filter(p => p.category === active);
 
   return (
@@ -49,8 +49,8 @@ function Plats() {
       ) : filtered.length > 0 ? (
         <div className="plats__grid">
           {filtered.map(p => (
-            <Card key={p.id} title={p.title} description={p.description}
-              price={p.price} image={p.image} tag={p.tag} unit={p.unit} />
+            <Card key={p.id} id={p.id} type={p.type} title={p.title} description={p.description}
+              price={p.price} image={p.image} tag={p.tag} unit={p.unit} mesure={p.mesure} />
           ))}
         </div>
       ) : (

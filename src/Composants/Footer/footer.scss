@@ -1,4 +1,4 @@
-@import '../../Utils/SASS/variables.scss';
+@use '../../Utils/SASS/variables.scss' as *;
 
 .footer {
   background: $ink;

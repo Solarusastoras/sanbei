@@ -1,100 +1,228 @@
-@import '../../Utils/SASS/variables.scss';
+@use '../../Utils/SASS/variables.scss' as *;
+@use 'sass:color';
 
 .epicerie {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
 
-  // ── Header ───────────────────────────────────────────────────────────────
+  // ── Header avec fond ──────────────────────────────────────────────────────
   &__header {
-    margin-bottom: 2.5rem;
+    background: linear-gradient(160deg, #fdf9f3 0%, #f0e8da 100%);
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba($saffron, 0.12), transparent 70%);
+      top: -80px;
+      right: -80px;
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba($terracotta, 0.08), transparent 70%);
+      bottom: -60px;
+      left: -40px;
+      border-radius: 50%;
+    }
   }
 
   &__eyebrow {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: $saffron;
-    display: block;
-    margin-bottom: 0.6rem;
+    color: color.adjust($saffron, $lightness: -15%);
+    margin-bottom: 0.75rem;
+    padding: 5px 14px;
+    background: rgba($saffron, 0.12);
+    border: 1px solid rgba($saffron, 0.3);
+    border-radius: 50px;
+    position: relative;
+    z-index: 1;
   }
 
   &__title {
     font-family: $font-display;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: $ink;
     letter-spacing: -0.03em;
     line-height: 1.1;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
 
     span {
       font-style: italic;
-      color: $saffron;
+      color: color.adjust($saffron, $lightness: -10%);
     }
   }
 
   &__subtitle {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: $stone;
+    position: relative;
+    z-index: 1;
   }
 
-  // ── Search ───────────────────────────────────────────────────────────────
+  // ── Search ────────────────────────────────────────────────────────────────
   &__search-wrap {
     position: relative;
-    max-width: 360px;
-    margin-bottom: 1.5rem;
+    max-width: 480px;
+    margin: 1.75rem auto 0;
+    padding: 0 2rem;
   }
 
   &__search {
     width: 100%;
-    padding: 10px 16px 10px 40px;
-    border: 1px solid rgba($sand, 0.5);
+    padding: 12px 20px 12px 44px;
+    border: 1.5px solid rgba($sand, 0.4);
     border-radius: 50px;
-    background: $warm-white;
+    background: white;
     font-family: $font-body;
     font-size: 0.875rem;
     color: $ink;
     outline: none;
-    transition: border-color $transition;
+    box-shadow: 0 2px 10px rgba($ink, 0.06);
+    transition: border-color $transition, box-shadow $transition;
 
-    &::placeholder { color: $sand; }
-    &:focus { border-color: $saffron; }
+    &::placeholder { color: rgba($stone, 0.5); }
+    &:focus {
+      border-color: color.adjust($saffron, $lightness: -10%);
+      box-shadow: 0 4px 16px rgba($saffron, 0.15);
+    }
   }
 
   &__search-icon {
     position: absolute;
-    left: 14px;
+    left: calc(2rem + 14px);
     top: 50%;
     transform: translateY(-50%);
-    color: $sand;
     font-size: 0.9rem;
     pointer-events: none;
   }
 
-  // ── Sections ─────────────────────────────────────────────────────────────
+  // ── Sections ──────────────────────────────────────────────────────────────
   &__section {
-    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+
+    &:first-of-type { margin-top: 2.5rem; }
   }
 
   &__section-title {
     font-family: $font-display;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: $charcoal;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $ink;
     margin-bottom: 1.25rem;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid rgba($sand, 0.3);
+    border-bottom: 2px solid rgba($saffron, 0.3);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    letter-spacing: -0.01em;
   }
 
-  // ── Grid ─────────────────────────────────────────────────────────────────
+  // ── Grid 3 colonnes ───────────────────────────────────────────────────────
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
   }
+
+  // ── Skeleton ──────────────────────────────────────────────────────────────
+  &__skeleton {
+    height: 360px;
+    border-radius: 15px;
+    background: linear-gradient(
+      90deg,
+      rgba(196, 180, 154, 0.12) 25%,
+      rgba(196, 180, 154, 0.25) 50%,
+      rgba(196, 180, 154, 0.12) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  // ── Filters ───────────────────────────────────────────────────────────────
+  &__filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-bottom: 1px solid rgba($sand, 0.25);
+    position: sticky;
+    top: 60px;
+    z-index: 10;
+  }
+
+  &__filter-btn {
+    padding: 7px 18px;
+    border-radius: 50px;
+    border: 1.5px solid rgba($sand, 0.4);
+    background: transparent;
+    font-family: $font-body;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: $stone;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: color.adjust($saffron, $lightness: -10%);
+      color: color.adjust($saffron, $lightness: -10%);
+    }
+
+    &--active {
+      background: color.adjust($saffron, $lightness: -10%);
+      border-color: color.adjust($saffron, $lightness: -10%);
+      color: white;
+      box-shadow: 0 3px 10px rgba($saffron, 0.35);
+    }
+  }
+
+  // ── Empty ─────────────────────────────────────────────────────────────────
+  &__empty {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: $stone;
+    font-size: 0.9rem;
+    max-width: 400px;
+    margin: 0 auto;
+
+    span {
+      display: block;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+
 }

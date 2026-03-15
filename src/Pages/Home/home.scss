@@ -1,170 +1,325 @@
-@import '../../Utils/SASS/variables';
+@use '../../Utils/SASS/variables.scss' as *;
+@use 'sass:color';
 
 .home {
-  // ── Hero ─────────────────────────────────────────────────────────────────
+
+  // ── Hero ──────────────────────────────────────────────────────────────────
   &__hero {
-    min-height: 72vh;
+    position: relative;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
     overflow: hidden;
-    background: $cream;
+    padding: 3rem 2rem 2.5rem;
+  }
 
-    // Grain texture overlay
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.5;
+  // Fond texturé organique
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      #fdf9f3 0%,
+      #f5ede0 35%,
+      #efe5d3 65%,
+      #f8f2ea 100%
+    );
+    z-index: 0;
+  }
+
+  // Grain texture overlay
+  &__hero-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    z-index: 1;
+  }
+
+  // Blobs de couleur subtils
+  &__hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    z-index: 1;
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba($terracotta, 0.25), transparent 70%);
+      top: -100px;
+      right: -100px;
+      animation: blob-drift 12s ease-in-out infinite alternate;
     }
 
-    // Decorative circle
-    &::after {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba($saffron, 0.12) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba($sage, 0.2), transparent 70%);
+      bottom: -80px;
+      left: -80px;
+      animation: blob-drift 16s ease-in-out infinite alternate-reverse;
     }
   }
 
+  @keyframes blob-drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.08); }
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes hero-fade-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   &__eyebrow {
-    font-size: 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: $terracotta;
-    margin-bottom: 1.2rem;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 1rem;
+    padding: 6px 16px;
+    background: rgba($terracotta, 0.08);
+    border: 1px solid rgba($terracotta, 0.2);
+    border-radius: 50px;
+  }
+
+  &__eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: $terracotta;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
   }
 
   &__title {
     font-family: $font-display;
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
     color: $ink;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: 1.2rem;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 1.25rem;
+    animation: hero-fade-up 0.9s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 
     em {
       font-style: italic;
       color: $terracotta;
+      font-weight: 600;
     }
   }
 
   &__subtitle {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: $stone;
+    line-height: 1.7;
     max-width: 480px;
-    line-height: 1.65;
-    position: relative;
-    z-index: 1;
+    margin: 0 auto 1.5rem;
+    animation: hero-fade-up 0.9s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  // ── Section separator ────────────────────────────────────────────────────
+  // ── CTA Buttons ────────────────────────────────────────────────────────
+  &__cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+    animation: hero-fade-up 0.9s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 14px 28px;
+    border-radius: $radius-md;
+    font-family: $font-body;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &--primary {
+      background: $terracotta;
+      color: white;
+      box-shadow: 0 4px 16px rgba($terracotta, 0.35);
+
+      &:hover {
+        background: color.adjust($terracotta, $lightness: -8%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba($terracotta, 0.4);
+      }
+    }
+
+    &--secondary {
+      background: white;
+      color: $ink;
+      border: 1.5px solid rgba($sand, 0.5);
+      box-shadow: 0 2px 8px rgba($ink, 0.06);
+
+      &:hover {
+        border-color: $terracotta;
+        color: $terracotta;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba($ink, 0.1);
+      }
+    }
+  }
+
+  // ── Badges infos ────────────────────────────────────────────────────────
+  &__hero-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    animation: hero-fade-up 0.9s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    span {
+      font-size: 0.78rem;
+      color: $stone;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+  }
+
+  // ── Scroll indicator ────────────────────────────────────────────────────
+  &__hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: scroll-bounce 2s ease-in-out infinite;
+
+    span {
+      font-size: 1.2rem;
+      color: rgba($stone, 0.5);
+    }
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+
+  // ── Divider ───────────────────────────────────────────────────────────────
   &__divider {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 3rem 2rem 0;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    margin: 3rem auto;
     max-width: 1200px;
-    margin: 0 auto;
 
-    span {
-      font-family: $font-display;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: $ink;
-      letter-spacing: -0.02em;
-    }
-
+    &::before,
     &::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: rgba($sand, 0.4);
+      background: rgba($sand, 0.35);
+    }
+
+    span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: $stone;
+      white-space: nowrap;
     }
   }
 
-  // ── Category cards ───────────────────────────────────────────────────────
+  // ── Category cards ────────────────────────────────────────────────────────
   &__categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 0 2rem;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__cat-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.5rem;
-    background: $warm-white;
+    padding: 1.25rem 1.5rem;
+    background: white;
     border: 1px solid rgba($sand, 0.3);
     border-radius: $radius-lg;
     text-decoration: none;
-    transition: transform $transition, box-shadow $transition, border-color $transition;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: $shadow-card;
 
     &:hover {
+      border-color: $terracotta;
       transform: translateY(-3px);
       box-shadow: $shadow-hover;
-      border-color: rgba($terracotta, 0.3);
+
+      .home__cat-card-arrow { transform: translateX(4px); }
+    }
+  }
+
+  &__cat-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    background: $cream;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__cat-card-text {
+    flex: 1;
+
+    h3 {
+      font-family: $font-display;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $ink;
+      margin-bottom: 2px;
     }
 
-    &-icon {
-      font-size: 2.2rem;
-      width: 56px;
-      height: 56px;
-      background: $cream;
-      border-radius: $radius-md;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    p {
+      font-size: 0.8rem;
+      color: $stone;
     }
+  }
 
-    &-text {
-      h3 {
-        font-family: $font-display;
-        font-size: 1rem;
-        font-weight: 600;
-        color: $ink;
-        margin-bottom: 2px;
-      }
-
-      p {
-        font-size: 0.8rem;
-        color: $stone;
-      }
-    }
-
-    &-arrow {
-      margin-left: auto;
-      color: $sand;
-      font-size: 1.1rem;
-      transition: transform $transition;
-    }
-
-    &:hover &-arrow {
-      transform: translateX(4px);
-      color: $terracotta;
-    }
+  &__cat-card-arrow {
+    font-size: 1.1rem;
+    color: $terracotta;
+    transition: transform 0.2s ease;
   }
 }

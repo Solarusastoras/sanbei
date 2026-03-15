@@ -7,6 +7,7 @@ function Epicerie() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading]   = useState(true);
   const [search, setSearch]     = useState('');
+  const [active, setActive]     = useState('Tous');
 
   useEffect(() => {
     async function fetchEpicerie() {
@@ -21,12 +22,18 @@ function Epicerie() {
     fetchEpicerie();
   }, []);
 
-  const filtered = products.filter(p =>
-    p.title.toLowerCase().includes(search.toLowerCase()) ||
-    (p.description || '').toLowerCase().includes(search.toLowerCase())
-  );
+  const activeFilters = ['Tous', ...new Set(products.map(p => p.category).filter(Boolean))];
 
-  const sections = [...new Set(products.map(p => p.category))];
+  const filtered = products
+    .filter(p => active === 'Tous' || p.category === active)
+    .filter(p =>
+      p.title.toLowerCase().includes(search.toLowerCase()) ||
+      (p.description || '').toLowerCase().includes(search.toLowerCase())
+    );
+
+  const sections = active === 'Tous'
+    ? [...new Set(filtered.map(p => p.category))]
+    : [active];
 
   return (
     <main className="epicerie">
@@ -43,12 +50,22 @@ function Epicerie() {
           value={search} onChange={e => setSearch(e.target.value)} />
       </div>
 
+      {!loading && products.length > 0 && (
+        <div className="epicerie__filters">
+          {activeFilters.map(f => (
+            <button key={f}
+              className={`epicerie__filter-btn${active === f ? ' epicerie__filter-btn--active' : ''}`}
+              onClick={() => setActive(f)}>{f}</button>
+          ))}
+        </div>
+      )}
+
       {loading ? (
         <div className="epicerie__grid" style={{ padding: '0 2rem' }}>
-          {[1,2,3,4].map(n => <div key={n} className="plats__skeleton" />)}
+          {[1,2,3,4].map(n => <div key={n} className="epicerie__skeleton" />)}
         </div>
       ) : filtered.length === 0 ? (
-        <div className="plats__empty"><span>🧺</span>Aucun produit trouvé.</div>
+        <div className="epicerie__empty"><span>🧺</span>Aucun produit trouvé.</div>
       ) : (
         sections.map(section => {
           const items = filtered.filter(p => p.category === section);
@@ -58,8 +75,8 @@ function Epicerie() {
               <h2 className="epicerie__section-title">{section}</h2>
               <div className="epicerie__grid">
                 {items.map(p => (
-                  <Card key={p.id} title={p.title} description={p.description}
-                    price={p.price} image={p.image} tag={p.tag} unit={p.unit} />
+                  <Card key={p.id} id={p.id} type={p.type} title={p.title} description={p.description}
+                    price={p.price} image={p.image} tag={p.tag} unit={p.unit} mesure={p.mesure} />
                 ))}
               </div>
             </section>
