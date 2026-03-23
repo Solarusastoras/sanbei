@@ -59,12 +59,14 @@ function Home() {
       />
 
       {/* ── Carrousel Épicerie ────────────────────────────────────────── */}
-      <Carousel
-        type="epicerie"
-        icon="🧺"
-        title="Épicerie <em>fraîche</em>"
-        seeAllTo="/epicerie"
-      />
+      <div className="home__carousel-epicerie">
+        <Carousel
+          type="epicerie"
+          icon="🧺"
+          title="Épicerie <em>fraîche</em>"
+          seeAllTo="/epicerie"
+        />
+      </div>
 
       {/* ── Category shortcuts ────────────────────────────────────────── */}
       <div className="home__divider">

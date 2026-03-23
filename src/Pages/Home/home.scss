@@ -322,4 +322,10 @@
     color: $terracotta;
     transition: transform 0.2s ease;
   }
+
+  &__carousel-epicerie {
+    .card__price {
+      display: none;
+    }
+  }
 }
