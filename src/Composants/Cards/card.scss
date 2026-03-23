@@ -4,10 +4,10 @@
   background: white;
   border-radius: 15px;
   overflow: hidden;
-  border: 1.5px solid #C1624A;
+  border: 1.5px solid #634276;
   box-shadow: 0 2px 12px rgba(26, 22, 18, 0.07);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
 
@@ -114,6 +114,7 @@
     border-radius: 50px;
     letter-spacing: 0.03em;
   }
+
   // ── Coeur favori ──────────────────────────────────────────────────────────
   &__heart {
     position: absolute;
@@ -132,11 +133,11 @@
     justify-content: center;
     z-index: 2;
     color: rgba(#C1624A, 0.5);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     transition: transform 0.2s ease, color 0.2s ease;
 
     &--active {
-      color: #C1624A;
+      color: #634276;
     }
 
     &--animating {
@@ -145,11 +146,30 @@
   }
 
   @keyframes heart-fill {
-    0%   { transform: scale(1);    color: rgba(#C1624A, 0.3); }
-    30%  { transform: scale(1.4);  color: #C1624A; }
-    60%  { transform: scale(0.9);  color: #C1624A; }
-    80%  { transform: scale(1.15); color: #C1624A; }
-    100% { transform: scale(1);    color: #C1624A; }
+    0% {
+      transform: scale(1);
+      color: rgba(#C1624A, 0.3);
+    }
+
+    30% {
+      transform: scale(1.4);
+      color: #C1624A;
+    }
+
+    60% {
+      transform: scale(0.9);
+      color: #C1624A;
+    }
+
+    80% {
+      transform: scale(1.15);
+      color: #C1624A;
+    }
+
+    100% {
+      transform: scale(1);
+      color: #C1624A;
+    }
   }
 
 }
