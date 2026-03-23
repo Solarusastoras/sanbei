@@ -23,15 +23,17 @@
   // ── Logo ──────────────────────────────────────────────────────────────────
   &__logo {
     font-family: $font-display;
-    font-size: 1.5rem;
-    font-weight: 700;
+    width: 50px;
+    height: 50px;
     color: $ink;
     text-decoration: none;
     letter-spacing: -0.03em;
     white-space: nowrap;
     flex-shrink: 0;
 
-    span { color: $terracotta; }
+    span {
+      color: $terracotta;
+    }
   }
 
   // ── Nav links ─────────────────────────────────────────────────────────────
@@ -69,7 +71,9 @@
     &--active {
       color: $ink;
 
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 
@@ -82,7 +86,9 @@
     transition: color $transition;
     flex-shrink: 0;
 
-    &:hover { color: $terracotta; }
+    &:hover {
+      color: $terracotta;
+    }
   }
 
   // ── Mobile burger ─────────────────────────────────────────────────────────
@@ -104,9 +110,18 @@
       transition: all $transition;
     }
 
-    &--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    &--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    &--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    &--open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    &--open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    &--open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
   }
 
   // ── Mobile menu ───────────────────────────────────────────────────────────
@@ -118,7 +133,9 @@
     padding: 1rem 2rem 1.5rem;
     gap: 1rem;
 
-    &--open { display: flex; }
+    &--open {
+      display: flex;
+    }
 
     .header__link {
       font-size: 1rem;
@@ -143,7 +160,9 @@
     padding: 4px;
     transition: transform 0.2s ease;
 
-    &:hover { transform: scale(1.15); }
+    &:hover {
+      transform: scale(1.15);
+    }
   }
 
   &__favoris-badge {
@@ -174,9 +193,18 @@
     cursor: pointer;
     text-align: left;
   }
+
   @media (max-width: 640px) {
-    &__nav   { display: none; }
-    &__admin { display: none; }
-    &__burger { display: flex; }
+    &__nav {
+      display: none;
+    }
+
+    &__admin {
+      display: none;
+    }
+
+    &__burger {
+      display: flex;
+    }
   }
 }

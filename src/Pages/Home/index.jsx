@@ -19,7 +19,7 @@ function Home() {
             <span className="home__eyebrow-dot" />
             Épicerie fine & Restaurant · Pau
           </p>
-          <h1 className='home_title'>San-Beï</h1>
+          <h1 className='home__title'>San-Beï</h1>
           <h2 className="home__h2">
             La table,<br />
             <em>à portée de main</em>
