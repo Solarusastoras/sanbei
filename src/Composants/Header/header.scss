@@ -22,11 +22,11 @@
 
   // ── Logo ──────────────────────────────────────────────────────────────────
   &__logo {
-    width: 19%;
+    width: 15%;
     height: 150%;
     display: flex;
-    margin-top: -30px;
-    position: absolute;
+    position: relative;
+    margin-top: 10px;
   }
 
   // ── Nav links ─────────────────────────────────────────────────────────────
@@ -62,7 +62,8 @@
 
     &:hover,
     &--active {
-      color: $ink;
+      color: $terracotta;
+      font-weight: bold;
 
       &::after {
         width: 100%;
@@ -188,6 +189,13 @@
   }
 
   @media (max-width: 640px) {
+
+    &__logo {
+      width: 25%;
+      height: 150%;
+      margin-left: 0%;
+    }
+
     &__nav {
       display: none;
     }
