@@ -16,8 +16,8 @@ function Header({ onFavorisClick, favorisCount }) {
   return (
     <header className="header">
       <div className="header__inner">
-        <Link to="/" className="header__logo" onClick={() => setOpen(false)}>
-          <img src={Logo} alt="Logo" />
+        <Link to="/" onClick={() => setOpen(false)}>
+          <img className='header__logo' src={Logo} alt="Logo" />
         </Link>
 
         <nav aria-label="Navigation principale">
