@@ -20,13 +20,11 @@
   &__hero-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      160deg,
-      #fdf9f3 0%,
-      #f5ede0 35%,
-      #efe5d3 65%,
-      #f8f2ea 100%
-    );
+    background: linear-gradient(160deg,
+        #70317b 0%,
+        #70317b 35%,
+        #70317b 65%,
+        #70317b 100%);
     z-index: 0;
   }
 
@@ -67,8 +65,13 @@
   }
 
   @keyframes blob-drift {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(30px, 20px) scale(1.08); }
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+
+    to {
+      transform: translate(30px, 20px) scale(1.08);
+    }
   }
 
   &__hero-content {
@@ -79,8 +82,15 @@
   }
 
   @keyframes hero-fade-up {
-    from { opacity: 0; transform: translateY(32px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   &__eyebrow {
@@ -108,8 +118,17 @@
   }
 
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(0.7); }
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: scale(0.7);
+    }
   }
 
   &__title {
@@ -222,8 +241,15 @@
   }
 
   @keyframes scroll-bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(6px); }
+
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+      transform: translateX(-50%) translateY(6px);
+    }
   }
 
   // ── Divider ───────────────────────────────────────────────────────────────
@@ -284,7 +310,9 @@
       transform: translateY(-3px);
       box-shadow: $shadow-hover;
 
-      .home__cat-card-arrow { transform: translateX(4px); }
+      .home__cat-card-arrow {
+        transform: translateX(4px);
+      }
     }
   }
 
