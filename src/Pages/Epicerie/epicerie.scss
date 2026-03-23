@@ -97,7 +97,10 @@
     box-shadow: 0 2px 10px rgba($ink, 0.06);
     transition: border-color $transition, box-shadow $transition;
 
-    &::placeholder { color: rgba($stone, 0.5); }
+    &::placeholder {
+      color: rgba($stone, 0.5);
+    }
+
     &:focus {
       border-color: color.adjust($saffron, $lightness: -10%);
       box-shadow: 0 4px 16px rgba($saffron, 0.15);
@@ -119,7 +122,9 @@
     margin: 0 auto 3rem;
     padding: 0 2rem;
 
-    &:first-of-type { margin-top: 2.5rem; }
+    &:first-of-type {
+      margin-top: 2.5rem;
+    }
   }
 
   &__section-title {
@@ -155,20 +160,24 @@
   &__skeleton {
     height: 360px;
     border-radius: 15px;
-    background: linear-gradient(
-      90deg,
-      rgba(196, 180, 154, 0.12) 25%,
-      rgba(196, 180, 154, 0.25) 50%,
-      rgba(196, 180, 154, 0.12) 75%
-    );
+    background: linear-gradient(90deg,
+        rgba(196, 180, 154, 0.12) 25%,
+        rgba(196, 180, 154, 0.25) 50%,
+        rgba(196, 180, 154, 0.12) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.4s infinite;
   }
 
   @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
   }
+
   // ── Filters ───────────────────────────────────────────────────────────────
   &__filters {
     display: flex;

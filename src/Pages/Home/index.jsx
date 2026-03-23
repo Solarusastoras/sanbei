@@ -19,13 +19,13 @@ function Home() {
             <span className="home__eyebrow-dot" />
             Épicerie fine & Restaurant · Pau
           </p>
-          <h1 className="home__title">
+          <h1 className='home_title'>San-Beï</h1>
+          <h2 className="home__h2">
             La table,<br />
             <em>à portée de main</em>
-          </h1>
+          </h2>
           <p className="home__subtitle">
             Plats cuisinés chaque matin, produits d'exception<br />
-            triés sur le volet. Le meilleur du quartier.
           </p>
           <div className="home__cta-group">
             <Link to="/plats" className="home__cta home__cta--primary">

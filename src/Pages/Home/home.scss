@@ -134,6 +134,17 @@
   &__title {
     font-family: $font-display;
     font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: bold;
+    color: #634276;
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.8rem;
+    animation: hero-fade-up 0.9s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  &__h2 {
+    font-family: $font-display;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
     color: $ink;
     line-height: 1.1;

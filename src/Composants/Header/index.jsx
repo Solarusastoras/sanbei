@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.scss';
+import Logo from '../../Utils/img/logoSanbei.png'
 
 const LINKS = [
-  { to: '/',         label: 'Accueil'  },
-  { to: '/plats',    label: 'Plats'    },
+  { to: '/', label: 'Accueil' },
+  { to: '/plats', label: 'Plats' },
   { to: '/epicerie', label: 'Épicerie' },
 ];
 
@@ -16,7 +17,7 @@ function Header({ onFavorisClick, favorisCount }) {
     <header className="header">
       <div className="header__inner">
         <Link to="/" className="header__logo" onClick={() => setOpen(false)}>
-          San<span>-Beï</span>
+          <img src={Logo} alt="Logo" />
         </Link>
 
         <nav aria-label="Navigation principale">
