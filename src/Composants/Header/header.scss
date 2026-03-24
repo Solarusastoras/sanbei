@@ -22,11 +22,16 @@
 
   // ── Logo ──────────────────────────────────────────────────────────────────
   &__logo {
-    width: 15%;
-    height: 150%;
-    display: flex;
-    position: relative;
-    margin-top: 10px;
+    height: 40px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
+
+    @media (max-width: 640px) {
+      height: 30px;
+      max-width: 120px;
+    }
   }
 
   // ── Nav links ─────────────────────────────────────────────────────────────
@@ -191,7 +196,7 @@
   @media (max-width: 640px) {
 
     &__logo {
-      width: 25%;
+      width: 50%;
       height: 150%;
       margin-left: 0%;
     }
@@ -208,4 +213,14 @@
       display: flex;
     }
   }
+
+  @media (min-width:641px) and (max-width: 1024px) {
+    &__logo {
+      width: 30%;
+      height: 150%;
+      margin-left: 0%;
+    }
+  }
+
+
 }
