@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Carousel from '../../Composants/Carousel';
+import MapSection from '../../Composants/MapSection';
 import './home.scss';
 
 function Home() {
@@ -88,6 +89,8 @@ function Home() {
           </Link>
         ))}
       </div>
+
+      <MapSection />
 
     </main>
   );
