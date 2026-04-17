@@ -149,50 +149,6 @@
     gap: 0.75rem;
   }
 
-  &__favoris {
-    position: relative;
-    background: none;
-    border: none;
-    font-size: 1.3rem;
-    color: $terracotta;
-    cursor: pointer;
-    padding: 4px;
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: scale(1.15);
-    }
-  }
-
-  &__favoris-badge {
-    position: absolute;
-    top: -4px;
-    right: -6px;
-    background: $terracotta;
-    color: white;
-    font-size: 0.6rem;
-    font-weight: 700;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: $font-body;
-  }
-
-  &__favoris-mobile {
-    background: none;
-    border: 1px solid rgba($sand, 0.4);
-    border-radius: $radius-sm;
-    padding: 8px 16px;
-    font-family: $font-body;
-    font-size: 0.9rem;
-    color: $terracotta;
-    cursor: pointer;
-    text-align: left;
-  }
-
   @media (max-width: 640px) {
 
     &__logo {
