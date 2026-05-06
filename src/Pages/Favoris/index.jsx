@@ -3,10 +3,7 @@ import { useFavoris } from '../../FavorisContext';
 import './favoris.scss';
 
 function Favoris({ onClose }) {
-  const { favoris, updateQty, removeFavori, clearFavoris, total } = useFavoris();
-  function handlePrint() {
-    window.print();
-  }
+  const { favoris, removeFavori, clearFavoris } = useFavoris();
 
   return (
     <div className="favoris-overlay" onClick={onClose}>
@@ -38,29 +35,16 @@ function Favoris({ onClose }) {
                   </div>
                   <div className="favoris__item-info">
                     <h4>{f.title}</h4>
-                    <p>{parseFloat(f.price).toFixed(2)} € / unité</p>
+                    <p>{parseFloat(f.price).toFixed(2)} €</p>
                   </div>
-                  <div className="favoris__item-qty">
-                    <button onClick={() => updateQty(f.id, f.qty - 1)}>−</button>
-                    <span>{f.qty}</span>
-                    <button onClick={() => updateQty(f.id, f.qty + 1)}>+</button>
-                  </div>
-                  <span className="favoris__item-total">
-                    {(parseFloat(f.price) * f.qty).toFixed(2)} €
-                  </span>
                   <button className="favoris__item-remove" onClick={() => removeFavori(f.id)}>✕</button>
                 </div>
               ))}
             </div>
 
             <div className="favoris__footer">
-              <div className="favoris__total">
-                <span>Total</span>
-                <strong>{total.toFixed(2)} €</strong>
-              </div>
               <div className="favoris__actions">
-                <button className="favoris__btn-clear" onClick={clearFavoris}>Vider</button>
-                <button className="favoris__btn-print" onClick={handlePrint}>🖨️ Imprimer</button>
+                <button className="favoris__btn-clear" onClick={clearFavoris}>Vider la liste</button>
               </div>
             </div>
           </>

@@ -1,7 +1,9 @@
 import React from "react";
+import FavoriteButton from "../FavoriteButton";
 import "./card.scss";
 
-function Card({ id, title, price, image, description, tag, unit, mesure }) {
+function Card({ id, title, price, image, description, tag, unit, mesure, type }) {
+  const product = { id, title, price, image, description, tag, unit, mesure, type };
   return (
     <div className="card">
       <div className="card__img">
@@ -11,6 +13,9 @@ function Card({ id, title, price, image, description, tag, unit, mesure }) {
           <div className="card__img--placeholder">🍽️</div>
         )}
         {tag && <span className="card__tag">{tag}</span>}
+        <div className="card__favorite">
+          <FavoriteButton product={product} />
+        </div>
       </div>
 
       <div className="card__body">

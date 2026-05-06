@@ -16,17 +16,12 @@ export function useFavoris() {
     setFavoris(prev => {
       const exists = prev.find(f => f.id === product.id);
       if (exists) return prev.filter(f => f.id !== product.id);
-      return [...prev, { ...product, qty: 1 }];
+      return [...prev, product];
     });
   }
 
   function isFavori(id) {
     return favoris.some(f => f.id === id);
-  }
-
-  function updateQty(id, qty) {
-    if (qty < 1) return;
-    setFavoris(prev => prev.map(f => f.id === id ? { ...f, qty } : f));
   }
 
   function removeFavori(id) {
@@ -37,7 +32,5 @@ export function useFavoris() {
     setFavoris([]);
   }
 
-  const total = favoris.reduce((sum, f) => sum + (parseFloat(f.price) * f.qty), 0);
-
-  return { favoris, toggleFavori, isFavori, updateQty, removeFavori, clearFavoris, total };
+  return { favoris, toggleFavori, isFavori, removeFavori, clearFavoris };
 }

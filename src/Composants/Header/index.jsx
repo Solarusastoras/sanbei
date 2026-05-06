@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Heart } from "lucide-react";
+import { useFavoris } from "../../FavorisContext";
+import Favoris from "../../Pages/Favoris";
 import "./header.scss";
 import Logo from "../../Utils/img/logoSanbei.png";
 
@@ -12,6 +15,8 @@ const LINKS = [
 function Header() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [showFavoris, setShowFavoris] = useState(false);
+  const { favoris } = useFavoris();
 
   return (
     <header className="header">
@@ -36,6 +41,14 @@ function Header() {
         </nav>
 
         <div className="header__actions">
+          <button
+            className="header__favoris-btn"
+            onClick={() => setShowFavoris(true)}
+            aria-label="Voir les favoris"
+          >
+            <Heart size={20} fill={favoris.length > 0 ? '#e53935' : 'transparent'} stroke={favoris.length > 0 ? '#e53935' : 'currentColor'} />
+            {favoris.length > 0 && <span className="header__favoris-count">{favoris.length}</span>}
+          </button>
           <Link
             to="/admin"
             className="header__admin"
@@ -70,6 +83,8 @@ function Header() {
           </Link>
         ))}
       </nav>
+
+      {showFavoris && <Favoris onClose={() => setShowFavoris(false)} />}
     </header>
   );
 }

@@ -147,49 +147,6 @@
     p { font-size: 0.75rem; color: $stone; margin-top: 2px; }
   }
 
-  &__item-qty {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-
-    button {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1.5px solid rgba($sand, 0.5);
-      background: none;
-      font-size: 1rem;
-      color: $ink;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all $transition;
-      line-height: 1;
-
-      &:hover { border-color: $terracotta; color: $terracotta; }
-    }
-
-    span {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: $ink;
-      min-width: 20px;
-      text-align: center;
-    }
-  }
-
-  &__item-total {
-    font-family: $font-display;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: $terracotta;
-    flex-shrink: 0;
-    min-width: 60px;
-    text-align: right;
-  }
-
   &__item-remove {
     background: none;
     border: none;
@@ -210,16 +167,6 @@
     background: #faf8f4;
   }
 
-  &__total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    span { font-size: 0.9rem; color: $stone; font-weight: 500; }
-    strong { font-family: $font-display; font-size: 1.4rem; color: $terracotta; }
-  }
-
   &__actions {
     display: flex;
     gap: 0.75rem;
@@ -238,50 +185,5 @@
     transition: all $transition;
 
     &:hover { border-color: #ef4444; color: #ef4444; }
-  }
-
-  &__btn-print {
-    flex: 2;
-    padding: 10px;
-    background: $terracotta;
-    border: none;
-    border-radius: $radius-sm;
-    font-family: $font-body;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: white;
-    cursor: pointer;
-    transition: background $transition;
-
-    &:hover { background: color.adjust($terracotta, $lightness: -8%); }
-  }
-}
-
-// ── Print ─────────────────────────────────────────────────────────────────
-@media print {
-  // Cache tout sauf la modale favoris
-  body > * { display: none !important; }
-  .favoris-overlay { display: block !important; position: static !important; background: none !important; }
-  .favoris {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    box-shadow: none !important;
-    animation: none !important;
-  }
-  .favoris__close,
-  .favoris__actions,
-  .favoris__item-remove,
-  .favoris__item-qty { display: none !important; }
-  .favoris__list { overflow: visible !important; }
-
-  // Entête impression
-  .favoris__header::before {
-    content: 'San-Beï · Ma liste de favoris';
-    display: block;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #C1624A;
-    margin-bottom: 0.25rem;
   }
 }
