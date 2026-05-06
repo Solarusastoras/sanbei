@@ -1,35 +1,16 @@
-import React, { useState } from 'react';
-import { useFavoris } from '../../FavorisContext';
-import './card.scss';
+import React from "react";
+import "./card.scss";
 
-function Card({ id, title, price, image, description, tag, unit, mesure, type }) {
-  const { toggleFavori, isFavori } = useFavoris();
-  const [animating, setAnimating] = useState(false);
-  const favori = isFavori(id);
-
-  function handleHeart(e) {
-    e.stopPropagation();
-    if (!favori) {
-      setAnimating(true);
-      setTimeout(() => setAnimating(false), 1500);
-    }
-    toggleFavori({ id, title, price, image, description, tag, unit, mesure, type });
-  }
-
+function Card({ id, title, price, image, description, tag, unit, mesure }) {
   return (
     <div className="card">
       <div className="card__img">
-        {image
-          ? <img src={image} alt={title} />
-          : <div className="card__img--placeholder">🍽️</div>
-        }
+        {image ? (
+          <img src={image} alt={title} />
+        ) : (
+          <div className="card__img--placeholder">🍽️</div>
+        )}
         {tag && <span className="card__tag">{tag}</span>}
-
-        {/* ── Coeur favori ── */}
-        <button className={`card__heart${favori ? ' card__heart--active' : ''}${animating ? ' card__heart--animating' : ''}`}
-          onClick={handleHeart} title={favori ? 'Retirer des favoris' : 'Ajouter aux favoris'}>
-          {favori ? '♥' : '♡'}
-        </button>
       </div>
 
       <div className="card__body">
@@ -37,7 +18,13 @@ function Card({ id, title, price, image, description, tag, unit, mesure, type })
         {description && <p className="card__description">{description}</p>}
         <div className="card__footer">
           <span className="card__price">{parseFloat(price).toFixed(2)} €</span>
-          {(unit || mesure) && <span className="card__info">{unit}{unit && mesure ? ' ' : ''}{mesure}</span>}
+          {(unit || mesure) && (
+            <span className="card__info">
+              {unit}
+              {unit && mesure ? " " : ""}
+              {mesure}
+            </span>
+          )}
         </div>
       </div>
     </div>
