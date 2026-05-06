@@ -8,7 +8,7 @@ const LIMIT = 8;
 
 function getSlidesVisible() {
   const w = window.innerWidth;
-  if (w <= 560) return 1.2;
+  if (w <= 560) return 1;
   if (w <= 900) return 2.1;
   return 3.4;
 }

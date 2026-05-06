@@ -14,10 +14,12 @@ html {
 
 body {
   font-family: $font-body;
-  background-color: $warm-white;
+  background: linear-gradient(135deg, #634276 0%, #8e62a8 100%);
+  background-attachment: fixed;
   color: $ink;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 // ─── Navigation ────────────────────────────────────────────────────────────
